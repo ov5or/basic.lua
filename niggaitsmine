@@ -1,7 +1,7 @@
 getgenv()._=
 "This script made by xk5ng | If you pay for this script you get scammed, this script is completely free ok https://discord.gg/msgabv2t9Q | https://discord.gg/stando"
 
-getgenv().Owner = "MRNOOBYLOL3"
+getgenv().Owner = "MRNOOBYLOL111"
 
 getgenv().StandConfig = {
 ['Msg'] = 'I am ov5or,s pet', --When You Say [/e msg] It Makes All The Alts Say That Message
