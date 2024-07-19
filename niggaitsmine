@@ -1,18 +1,17 @@
-getgenv()._=
-"This script made by xk5ng | If you pay for this script you get scammed, this script is completely free ok https://discord.gg/msgabv2t9Q | https://discord.gg/stando"
+_="Join discord.gg/msgabv2t9Q | discord.gg/stando to get latest update | If you pay for this script you get scammed, this script is completely free ok"
 
-getgenv().Owner = "MRNOOBYLOL111"
+Owner = "jfycfy"
 
-getgenv().StandConfig = {
-['Msg'] = 'I am ov5or,s pet', --When You Say [/e msg] It Makes All The Alts Say That Message
-['CrewID'] = 14590179, --Must join group
+Configuration = {
+['Msg'] = 'Yare Yare Daze.', --When You Say [/e msg] It Makes All The Alts Say That Message
+['CrewID'] = 32570691, --Must join group
 ['Attack'] = 'Heavy', --[Heavy | Light] Heavy = Super Punch Light = Spam Punch
-['TPMode'] = "Cart", --[Knock | Cart]
+['TPMode'] = "Cart", --[Knock | Cart] --Teleport mode
 ['GunMode'] = 'Under', --[Sky | Under]  The Stand Will Shooting Just Like What In The Settings
 ['FlyMode'] = 'Glide', --[Glide | FlyV1 | FlyV2 | Hover | Heaven ]
 ['Position'] = 'Back', --[Back | Left | Right | Mid | UpMid | UpLeft | UpLeft | Walk ]
 ['Resolver'] = false, --[true | false] Turn On Or Off Resolver If Someone Using Anti Lock [This only applied to attack only for guns it's already have resolver]
-['ChatCmds'] = false, --[true | false] if true stand talks to you
+['ChatCmds'] = true, --[true | false] if true stand talks to you
 ['AutoMask'] = true, --[true | false] Auto Buy Mask When The Stand Respawn
 ['MaskMode'] = 'Breathing', --[Surgeon | Paintball | Skull | Pumpkin | Hockey | Ninja | Riot | Breathing] The Stand Will Buy The Mask You Selected
 ['AntiStomp'] = true, --[true | false] The Stand Will Cannot Be Stomped Or Grabbed
@@ -22,12 +21,13 @@ getgenv().StandConfig = {
 ['CustomName'] = 'Master', --Custom Name Text Default Is [Master] Example Of it 'Im Here, Master'
 ['Hidescreen'] = true, --[true | false] If you set it to true you will see white blank screen [Save up gpu usage]
 ['SummonPoses'] = 'Pose3', --[false | Pose1 | Pose2 | Pose3]
-['LowGraphics'] = true, --[true | false] Turns graphics down so your stand doesnt lag too much
+['LowGraphics'] = false, --[true | false] Turns graphics down so your stand doesnt lag too much
 ['CustomPrefix'] = '.', --[ ! | / | . | ? | > | < | $ | ; | : ] Custom target prefix
 ['CustomSummon'] = 'Summon!', --Custom [Summon!] Text
 ['GunPrediction'] = 0.037, --Gun prediction [this is auto prediction sets]
-['AutoPrediction'] = true, --[true | false] Turn On Or Off Auto Prediction 
+['AutoPrediction'] = false, --[true | false] Turn On Or Off Auto Prediction 
 ['AttackDistance'] = 75, --Attack distance for "Attack!, Stab!, Gkill!" max distance
+['AutoSaveLocation'] = 'Downhill_Rooftop', --[Downhill_Rooftop | Uphill_Rooftop | DA_FURNITURE ]
 ['AttackPrediction'] = 0.34, --Prediction For Attack Or Targetting
 ['AttackAutoPrediction'] = 0.23, --Prediction For Attack Or Targetting
 --//    ! Sounds !     \\--
