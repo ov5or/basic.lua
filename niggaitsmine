@@ -1,10 +1,10 @@
 _="Join discord.gg/msgabv2t9Q | discord.gg/stando to get latest update | If you pay for this script you get scammed, this script is completely free ok"
 
-Owner = "jfycfy"
+Owner = "MRNOOBYLOL3"
 
 Configuration = {
 ['Msg'] = 'Yare Yare Daze.', --When You Say [/e msg] It Makes All The Alts Say That Message
-['CrewID'] = 32570691, --Must join group
+['CrewID'] = 14590179, --Must join group
 ['Attack'] = 'Heavy', --[Heavy | Light] Heavy = Super Punch Light = Spam Punch
 ['TPMode'] = "Cart", --[Knock | Cart] --Teleport mode
 ['GunMode'] = 'Under', --[Sky | Under]  The Stand Will Shooting Just Like What In The Settings
