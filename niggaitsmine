@@ -10,20 +10,17 @@ local configs = {
 }
 
 -- box / marker settings
-
 local boxsettings = {
     box = {
         Showbox = true,
-
         boxsize = Vector3.new(5, 5, 5), -- Box Size
-        markercolor = Color3.fromRGB(199, 110, 255), -- Marrker Color
+        markercolor = Color3.fromRGB(199, 110, 255), -- Marker Color
         markersize = UDim2.new(1, 0, 3, 0) -- Marker Size
     }
 }
 
--- dont mess with anything below
+-- don't mess with anything below
 local box = Instance.new("Part", game.Workspace)
-
 local Mouse = game.Players.LocalPlayer:GetMouse()
 
 function makemarker(Parent, Adornee, Color, Size, Size2)
@@ -39,15 +36,16 @@ function makemarker(Parent, Adornee, Color, Size, Size2)
 
     local g = Instance.new("UICorner", a)
     g.CornerRadius = UDim.new(50, 25)
-    return (box)
+    return box
 end
 
 local Plr
+
 Mouse.KeyDown:Connect(function(KeyPressed)
     if KeyPressed == (configs.main.aimlockkey) then
-        if configs.main.enabled == true then
+        if configs.main.enabled then
             configs.main.enabled = false
-            if configs.main.notifications == true then
+            if configs.main.notifications then
                 Plr = FindClosestUser()
                 game.StarterGui:SetCore("SendNotification", {
                     Title = "tapbot.cc [SIMPLE]",
@@ -57,7 +55,7 @@ Mouse.KeyDown:Connect(function(KeyPressed)
         else
             Plr = FindClosestUser()
             configs.main.enabled = true
-            if configs.main.notifications == true then
+            if configs.main.notifications and Plr and Plr.Character then
                 game.StarterGui:SetCore("SendNotification", {
                     Title = "tapbot.cc [SIMPLE]",
                     Text = "Locking on:  " .. tostring(Plr.Character.Humanoid.DisplayName)
@@ -73,8 +71,7 @@ function noob(player)
     repeat
         wait()
     until player.Character
-    local handler = makemarker(guimain, player.Character:WaitForChild(configs.main.aimpart),
-        Color3.fromRGB(107, 184, 255), 0.10, 8)
+    local handler = makemarker(guimain, player.Character:WaitForChild(configs.main.aimpart), Color3.fromRGB(107, 184, 255), 0.10, 8)
     handler.Name = player.Name
     player.CharacterAdded:connect(function(Char)
         handler.Adornee = Char:WaitForChild("HumanoidRootPart")
@@ -95,13 +92,9 @@ spawn(function()
     box.Anchored = true
     box.CanCollide = false
     box.Size = boxsettings.box.boxsize
-    box.Material = Enum.Material.ForceField 
+    box.Material = Enum.Material.ForceField
     box.Color = Color3.fromRGB(199, 110, 255)
-    if boxsettings.box.Showbox == true then
-        box.Transparency = 0
-    else
-        box.Transparency = 1
-    end
+    box.Transparency = boxsettings.box.Showbox and 0 or 1
     makemarker(box, box, boxsettings.box.markercolor, 0.40, 1)
 end)
 
@@ -112,10 +105,8 @@ function FindClosestUser()
     for i, v in pairs(game.Players:GetPlayers()) do
         if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and
             v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") then
-            local pos = game:GetService "Workspace".CurrentCamera:WorldToViewportPoint(v.Character.PrimaryPart.Position)
-            local magnitude = (Vector2.new(pos.X, pos.Y) -
-                                  Vector2.new(game.Players.LocalPlayer:GetMouse().X,
-                    game.Players.LocalPlayer:GetMouse().Y)).magnitude
+            local pos = game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(v.Character.PrimaryPart.Position)
+            local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(game.Players.LocalPlayer:GetMouse().X, game.Players.LocalPlayer:GetMouse().Y)).magnitude
             if magnitude < ShortestDistance then
                 closestPlayer = v
                 ShortestDistance = magnitude
@@ -125,11 +116,10 @@ function FindClosestUser()
     return closestPlayer
 end
 
-game:GetService "RunService".Stepped:connect(function()
-    if configs.main.enabled and Plr.Character and Plr.Character:FindFirstChild("HumanoidRootPart") then
-        box.CFrame = CFrame.new(Plr.Character[configs.main.aimpart].Position +
-                                    (Plr.Character.UpperTorso.Velocity * configs.main.prediction))
-        Plr.Character.HumanoidRootPart.Size = Vector3.new(10,10,10)
+game:GetService("RunService").Stepped:connect(function()
+    if configs.main.enabled and Plr and Plr.Character and Plr.Character:FindFirstChild("HumanoidRootPart") then
+        box.CFrame = CFrame.new(Plr.Character[configs.main.aimpart].Position + (Plr.Character.UpperTorso.Velocity * configs.main.prediction))
+        Plr.Character.HumanoidRootPart.Size = Vector3.new(10, 10, 10)
         Plr.Character.HumanoidRootPart.CanCollide = false
     else
         box.CFrame = CFrame.new(0, 9999, 0)
@@ -139,14 +129,14 @@ end)
 repeat
     wait()
 until game:IsLoaded()
+
 local mt = getrawmetatable(game)
 local old = mt.__namecall
 setreadonly(mt, false)
 mt.__namecall = newcclosure(function(...)
     local args = {...}
-    if configs.main.enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePos" then
-        args[3] = Plr.Character[configs.main.aimpart].Position +
-                      (Plr.Character[configs.main.aimpart].Velocity * configs.main.prediction)
+    if configs.main.enabled and Plr and Plr.Character and Plr.Character:FindFirstChild(configs.main.aimpart) and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePos" then
+        args[3] = Plr.Character[configs.main.aimpart].Position + (Plr.Character[configs.main.aimpart].Velocity * configs.main.prediction)
         return old(unpack(args))
     end
     return old(...)
